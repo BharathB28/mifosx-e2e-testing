@@ -11,6 +11,7 @@ import java.io.IOException;
 //import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -715,12 +716,31 @@ public class MifosWebPage extends WebDriverAwareWebPage {
 				 {
 					 Thread.sleep(10000);
 				 }
-				if (key.equals("Submitbutton")||key.equals("previewCollectionSheet")
+				String[] arr = {"Submitbutton","previewCollectionSheet","productiveCollectionSheet",
+						"clickonsubmit","clickonapproveSaving",
+						"GroupAddClient","clickondeletetranche"};
+				/*if (key.equals("Submitbutton")||key.equals("previewCollectionSheet")
 						||key.equals("clickonsubmit")|| key.equals("productiveCollectionSheet")
                         ||key.equals("clickonapproveSaving") ||key.equals("GroupAddClient") ||key.equals("clickondeletetranche"))
 				{
 			 Thread.sleep(2000);
-		        }
+		        }*/
+				if (AsList(arr, key)) {
+					Thread.sleep(2000);
+				}
+			if (FrontPage.sheetName.equals("NewSavingInput") && key.equals("Submitbutton")) {
+				LazyWebElement check = getElement(getResource("isOverdraftAmountEnabled"));
+				if (check.isSelected()) {
+					LazyWebElement check1 = getElement(getResource("isDplimitEnabled"));
+					if (check1.isSelected()) {
+						clickButton(getLocator(getResource("isDplimitEnabled")));
+						FrontPage.sheetName = "";
+					}
+				}else
+				{
+				FrontPage.sheetName = "";
+				}
+			}
 			if (key.equals("ClickOnADD")) {
 				By loc = null;
 				loc = getLocator(getResource(key));
@@ -972,6 +992,10 @@ public class MifosWebPage extends WebDriverAwareWebPage {
 		submitValues(items, type, false, "id");
 	}
 
+	public static boolean AsList(String[] arr, String targetValue) {
+		return Arrays.asList(arr).contains(targetValue);
+	}
+	
 	/**
 	 * Submit id values.
 	 *
@@ -2410,7 +2434,18 @@ public class MifosWebPage extends WebDriverAwareWebPage {
 		changeWindow("2", "Not able to open the window", true);
 	}
 
-
+	public void select_office()
+	{
+		
+			 
+			 By locator = null;
+			 clickButton(getLocator(getResource("office")));
+			 locator = getLocator(getResource("office" + ".input"));
+			 waitForElementAndPoll(locator);
+				LazyWebElement locatorElement = getElement(locator, true);
+				locatorElement.sendKeys("Branch Office" + Keys.TAB);
+		 
+	}
 
 	//@Override
 	public boolean isOpened() {

@@ -1,25 +1,28 @@
 Feature:RBI
 
 Background:
-	Given I navigate to mifos using "default2#/"
+	Given I navigate to mifos using "default7#/"
 	And I login into mifos site using "Login" excel sheet
 		|Login.xlsx|
 	Then I should see logged in successfully
 
-
-@RunnerClass2
-Scenario:4206-RBI-EI-DB-DL-REC-FEE-RNI-FFC-SAR-FFROP-DAILY-1-CTRFD-MD-TR-1-LESS-PERIODIC
-  Given I setup the clients 
-	  When I entered the values into client from "Input" sheet
-	  			|Createclient.xlsx|
-	  Then I should see client created successfully from "Output" sheet
-	  			|Createclient.xlsx|
-	  When I set up the new create loan from "NewLoanInput" sheet
-	  			| 631-MS-EI-DB-SAR-REC-NON-RNI-CTRFD-SAR-MD-TR-1-EarlyRePayment-Newcreateloan.xlsx|
-	  Then I verified the "Summary" details successfully 
-	  			| 631-MS-EI-DB-SAR-REC-NON-RNI-CTRFD-SAR-MD-TR-1-EarlyRePayment-Newcreateloan.xlsx|
-	  And I verified the "Repayment Schedule" details successfully 
-	  			| 631-MS-EI-DB-SAR-REC-NON-RNI-CTRFD-SAR-MD-TR-1-EarlyRePayment-Newcreateloan.xlsx|
-	  When I make repayment and verified the following tabs
-       			|631-MS-EI-DB-SAR-REC-NON-RNI-CTRFD-SAR-MD-TR-1-EarlyRePayment-Makerepayment1.xlsx|Input|Summary|Repayment Schedule|Transactions|
-		  
+@RunnerClass4
+Scenario:4566-MS-ACT2CTR-MEET-WEEKLYonFRI-ASSIGNSTAFF-ACTGRP-ACTCLIENT-DISJLG02JAN-WAIVECHARGEFOR1LOAN-PRODUCTIVE_COLLSHEET_ONTIME09JAN 
+	 Given I setup the center
+	 When I entered the values into center from "Input" sheet
+	 |4566-MS-ACT2CTR-MEET-WEEKLYonFRI-ASSIGNSTAFF-ACTGRP-ACTCLIENT-DISJLG02JAN-WAIVECHARGEFOR1LOAN-PRODUCTIVE_COLLSHEET_ONTIME09JAN-C1.xlsx|
+	 Then I entered the values into group from "Group" sheet
+     |4566-MS-ACT2CTR-MEET-WEEKLYonFRI-ASSIGNSTAFF-ACTGRP-ACTCLIENT-DISJLG02JAN-WAIVECHARGEFOR1LOAN-PRODUCTIVE_COLLSHEET_ONTIME09JAN-C1.xlsx|		  								  				  				  			
+	 Then I entered the values into client from "Input" sheet
+	 	|Createclient.xlsx|	 				  								  				  				  			
+	 When I set up the new create loan from "NewLoanInput" sheet
+	 |4566-MS-ACT2CTR-MEET-WEEKLYonFRI-ASSIGNSTAFF-ACTGRP-ACTCLIENT-DISJLG02JAN-WAIVECHARGEFOR1LOAN-PRODUCTIVE_COLLSHEET_ONTIME09JAN-C1.xlsx|
+     Then I "WAIVEPENALTY" and verified the following tabs
+	 |4566-MS-ACT2CTR-MEET-WEEKLYonFRI-ASSIGNSTAFF-ACTGRP-ACTCLIENT-DISJLG02JAN-WAIVECHARGEFOR1LOAN-PRODUCTIVE_COLLSHEET_ONTIME09JAN-C1.xlsx|Charges|
+	 Then I navigate to collection Sheet
+     Then I Make Repayment Through "Productive Collection" sheet
+	 |4566-MS-ACT2CTR-MEET-WEEKLYonFRI-ASSIGNSTAFF-ACTGRP-ACTCLIENT-DISJLG02JAN-WAIVECHARGEFOR1LOAN-PRODUCTIVE_COLLSHEET_ONTIME09JAN-C1.xlsx|
+	 And I navigate To Loan Account Page
+	 Then I verified the following Tabs details successfully 
+	 |4566-MS-ACT2CTR-MEET-WEEKLYonFRI-ASSIGNSTAFF-ACTGRP-ACTCLIENT-DISJLG02JAN-WAIVECHARGEFOR1LOAN-PRODUCTIVE_COLLSHEET_ONTIME09JAN-C1.xlsx|Summary|Repayment Schedule|
+			

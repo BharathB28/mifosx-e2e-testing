@@ -1,7 +1,7 @@
 Feature:Savings/FixedDeposit/RecurringDeposit/Share
 
 Background:
-	Given I navigate to mifos using "default9#/"
+	Given I navigate to mifos using "default8#/"
 	And I login into mifos site using "Login" excel sheet
 		|Login.xlsx|
 	Then I should see logged in successfully
